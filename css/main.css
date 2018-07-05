@@ -1,6 +1,8 @@
 @import 'helpers.css';
 @import 'notes-style.css';
 
+@import 'email-styles.css';
+
 * {
 	box-sizing: border-box;
 }

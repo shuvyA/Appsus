@@ -20,6 +20,7 @@ function getTime() {
 export default {
 	getMails,
 	getMailById,
+	deleteEmailByIdx,
 	setRead
 }
 
@@ -31,4 +32,9 @@ function getMailById(id) {
 function setRead(id){
 	let email = emails.find(mail => mail.id === id)
 	email.isRead = true;
+}
+
+function deleteEmailByIdx(id){
+	let idx = emails.findIndex(mail => mail.id === id)
+	emails.splice(idx,1)
 }
