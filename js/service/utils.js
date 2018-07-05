@@ -9,7 +9,7 @@ function saveToStorage(key, value) {
   
   
   
-  function makeId() {
+   function makeId() {
     var length = 6;
     var txt = '';
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -19,4 +19,10 @@ function saveToStorage(key, value) {
     }
   
     return txt;
+  }
+
+  export default {
+    makeId,
+    loadFromStorage,
+    saveToStorage
   }
