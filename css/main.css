@@ -1,4 +1,5 @@
 @import 'helpers.css';
+@import 'notes-style.css';
 
 * {
 	box-sizing: border-box;
