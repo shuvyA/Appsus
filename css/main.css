@@ -1,5 +1,7 @@
 @import 'helpers.css';
 
+@import 'email-styles.css';
+
 * {
 	box-sizing: border-box;
 }

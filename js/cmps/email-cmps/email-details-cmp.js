@@ -3,8 +3,9 @@ export default {
 	template: `
        <section class="email-details">
         <div>
-			<h2>email details: </h2>{{mailDetails}}
+			<h2>email details: </h2>{{email}}
 			<button  @click="closeMail">&times;</button>
+			<button  @click="onDeleteEmail">Delete</button>
        </div>
        </section>
     `,
@@ -14,6 +15,9 @@ export default {
 	methods: {
 		closeMail() {
 			this.$emit('close-mail');
+		},
+		onDeleteEmail(){
+			this.$emit('delete-email',this.email.id)
 		}
 	}
 };

@@ -6,7 +6,6 @@ export default {
 	props: ['emails'],
 	template: `
         <section class="emails">
-
             <ul>
 
                 <li v-for="email in emails" :key="email.id" 
@@ -16,7 +15,8 @@ export default {
                 </email-preview>
                 
                 </li>
-                <email-details v-if="selectedEmail" :email="selectedEmail" @close-mail="closeMail">
+                <email-details v-if="selectedEmail" :email="selectedEmail" 
+                @close-mail="closeMail" @delete-email="deleteEmail">
                 </email-details>
 
             </ul>
@@ -30,6 +30,7 @@ export default {
 	},
 	methods: {
 		selectEmail(email) {
+			this.$emit('add-counter');
 			this.selectedEmail = email;
 			this.isRead(email);
 		},
@@ -39,6 +40,10 @@ export default {
 		isRead(email) {
 			emailService.setRead(email.id);
 			console.log('is set read?', email.isRead);
+		},
+		deleteEmail(id) {
+			emailService.deleteEmailByIdx(id);
+			this.selectedEmail = null;
 		}
 	},
 	components: {

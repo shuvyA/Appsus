@@ -1,15 +1,17 @@
 import emailService from '../service/email-service.js';
-import emailList from '../cmps/email-cmps/email-list-cmp.js'
-
+import emailList from '../cmps/email-cmps/email-list-cmp.js';
+import progressBar from '../cmps/email-cmps/progress-bar-cmp.js';
 
 export default {
 	template: `
     <section class="email-app">
+        
         <h1>Emails</h1>
-        <div class="emails">
-        <!-- {{ emails }} -->
-        <email-list v-bind:emails="emails"></email-list>
-        </div>
+        
+        <progress-bar :unread="unreadEmails"></progress-bar>
+
+        <email-list :emails="emails"></email-list>
+        <!-- @add-counter="unreadMails" -->
     </section>
     `,
 	data() {
@@ -20,11 +22,21 @@ export default {
 	created() {
 		emailService.getMails().then(emails => {
 			this.emails = emails;
-			// console.log(this.emails);
 		});
 	},
+	methods: {},
 	components: {
-        emailService,
-        emailList,
+		emailService,
+		emailList,
+		progressBar
+	},
+	computed: {
+		unreadEmails() {
+			var counter = 0;
+			this.emails.forEach(email => {
+				if (email.isRead) counter++;
+			});
+			return this.emails.length - counter;
+		}
 	}
 };
