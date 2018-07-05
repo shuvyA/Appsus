@@ -14,9 +14,7 @@ export default {
         
         </ul> -->
 
-        {{notes}}
-
-        <note-txt-preview></note-txt-preview>
+        <!-- {{notes}} -->
 
         <component v-for="(note, idx) in notes" :is="note.type" :key="idx" :note="note"> 
     
@@ -28,7 +26,6 @@ export default {
     `,
     data() {
         return {
-            // currNote: this.emptyNote(),
 
 
         }

@@ -15,8 +15,6 @@ export default {
         <!-- <h2 v-if="selectNote">{{selectNote}}</h2> -->
         <preview-notes v-bind:notes="notesToShow"></preview-notes>
 
-      <!-- <component v-for="(note, idx) in notes" :is="note.noteType" :key="idx" :data="notes.data"> -->
-          <!-- {{note.data.text}} -->
 
     </section>
     `,
