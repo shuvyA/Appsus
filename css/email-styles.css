@@ -7,16 +7,16 @@
 .email-app {
 	height: 100vh;
 	padding: 1em;
-	background-color: rgba(49, 133, 136, 0.75);
+	background-color: rgba(49, 133, 136, 0.7);
 }
 
 .email-preview {
-	background-color: rgba(255, 255, 255, 0.575);
+	background-color: rgba(255, 255, 255, 0.6);
 	position: relative;
 	display: flex;
 	padding: 0.1em;
 	width: 30vw;
-	border: 1px solid rgba(100, 100, 100, 0.473);
+	border: 1px solid rgba(100, 100, 100, 0.7);
 	border-radius: 5px;
 }
 
@@ -26,6 +26,7 @@
 	border: 1px solid black;
 	padding-left: 1em;
 	width: 65vw;
+	border: 1px solid rgba(100, 100, 100, 0.7);
 }
 
 .email-details h2 {

@@ -20,7 +20,7 @@ export default {
 		return {
 			filter: {
 				searchText: '',
-				picked: 'All'
+				picked: 'all'
 			}
 		};
 	},

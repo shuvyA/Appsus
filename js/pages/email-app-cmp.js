@@ -8,15 +8,21 @@ export default {
 	template: `
     <section class="email-app">
         
-		<email-compose v-if="newEmail" @send-mail="saveEmail"></email-compose>
+		<email-compose v-if="newEmail" @send-mail="saveEmail">
+		</email-compose>
 		
-        <email-filter @filter-set="setFilter"></email-filter>
+        <email-filter @filter-set="setFilter">
+		</email-filter>
 		
-        <progress-bar :unread="unreadEmails"></progress-bar>
+        <progress-bar :unread="unreadEmails">
+		</progress-bar>
 		
-        <email-list :emails="emailsToShow" @email-read="setReadEmail"></email-list>
+        <email-list :emails="emailsToShow" @email-read="setReadEmail">
+		</email-list>
 		
-		<button class="compose-email" @click="newEmail = !newEmail">+</button>
+		<button class="compose-email" @click="newEmail = !newEmail">
+		+
+		</button>
 
     </section>
     `,
@@ -38,11 +44,13 @@ export default {
 		},
 		saveEmail(email) {
 			emailService.addEmail(email);
-			this.newEmail = !this.newEmail
+			this.newEmail = !this.newEmail;
 		}
 	},
 	created() {
-		emailService.getEmails().then(emails => {this.emails = emails;});
+		emailService.getEmails().then(emails => {
+			this.emails = emails;
+		});
 		// for future implementation
 		emailService.getOnlineEmails().then(email => (this.online = email));
 	},
