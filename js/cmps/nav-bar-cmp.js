@@ -6,11 +6,10 @@ export default {
 
 			<router-link class="no-decor flex" exact to="/email" 
 			:class="[showMenu? 'menu-display' : '']">
-				<span @click="activate('email')">Emails
+				<span @click="activate('email')">Emails</span>
 				<span :class="[(active === 'email')? 'triangle flex' : 'no-opacity']">			
 				<span>
 				<span></span>
-				</span>
 				</span>
 				</span>
 			</router-link>
@@ -18,11 +17,10 @@ export default {
 
 			<router-link class="no-decor flex" exact to="/" 
 			:class="[showMenu? 'menu-display' : '']">
-				<span @click="activate('home')">Home
+				<span @click="activate('home')">Home</span>
 				<span :class="[(active === 'home')? 'triangle flex' : 'no-opacity']">
 				<span>
 				<span></span>
-				</span>
 				</span>
 				</span>
 			</router-link>
@@ -31,13 +29,12 @@ export default {
 
 			<router-link class="no-decor flex" to="/note"
 			:class="[showMenu? 'menu-display' : '']">
-			<span @click="activate('notes')">Notes
+			<span @click="activate('notes')">Notes</span>	
 				<span :class="[(active === 'notes')? 'triangle flex' : 'no-opacity']">
 				<span>
 				<span></span>
 				</span>
 				</span>
-				</span>	
 			</router-link>
 		
 
@@ -45,7 +42,7 @@ export default {
 	`,
 	data() {
 		return {
-			active: 'email',
+			active: 'home',
 			showMenu: false
 		};
 	},

@@ -46,7 +46,7 @@ export default {
 			emailService.addEmail(email);
 			this.newEmail = !this.newEmail;
 		},
-		closeCompose(){
+		closeCompose() {
 			this.newEmail = false;
 		}
 	},
@@ -55,7 +55,7 @@ export default {
 			this.emails = emails;
 		});
 		// for future implementation
-		emailService.getOnlineEmails().then(email => (this.online = email));
+		// emailService.getOnlineEmails().then(email => (this.online = email));
 	},
 	computed: {
 		unreadEmails() {

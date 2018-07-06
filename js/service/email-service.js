@@ -7,7 +7,6 @@ export default {
 	setRead,
 	emptyEmail,
 	addEmail,
-	getOnlineEmails
 };
 
 function getEmails() {
