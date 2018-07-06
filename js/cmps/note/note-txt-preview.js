@@ -5,17 +5,23 @@ export default {
 
     template: `
 
-    <section class="note-txt-preview">
-        <h1>preview txt</h1>
-    the text is:
-    {{note}}
-    <!-- {{note.text}}   -->
+    <section class="note-txt-preview item">
+        
+        <div class="title-text flex space-between"> {{note.title}} 
+            <div>
+
+                <button>✎</button>
+                <button @click.prevent="deleteNote">✘</button>
+            </div>
+        </div>
+            <div class="main-text">
+            {{note.text}}  
+            </div>
             
     </section>
 
     `,
-    created(){
-console.log('txt');
+    created() {
 
     },
     data() {
@@ -25,9 +31,14 @@ console.log('txt');
         }
     },
     methods: {
+        deleteNote() {
+            console.log('delete', this.note.title, 'and', this.note.id);
+            this.$emit('del-note', this.note.id);
 
-        
+        }
+
+
     },
-   
+
 
 }

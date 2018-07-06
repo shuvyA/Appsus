@@ -2,18 +2,15 @@ import noteService from '../service/note-service.js'
 
 import noteTxt from '../cmps/note/note-txt-cmp.js';
 import noteImg from '../cmps/note/note-img-cmp.js';
-import previewNotes from '../cmps/note/preview-notes-cmp.js';
+import listNotes from '../cmps/note/list-notes-cmp.js';
 
 
 
 export default {
     template: `
-    <section class="note-app">
+    <section  class="note-app container">
         <h1>appSus</h1>
-        <!-- <note-txt @add-note="addNote"></note-txt> -->
-<!-- {{notes}} -->
-        <!-- <h2 v-if="selectNote">{{selectNote}}</h2> -->
-        <preview-notes v-bind:notes="notesToShow"></preview-notes>
+        <list-notes v-bind:notes="notesToShow"></list-notes>
 
 
     </section>
@@ -21,8 +18,7 @@ export default {
     data() {
 
         return {
-            // currNotes: 
-            notes: noteService.quary(),
+            notes: [],
 
             selectNote: null,
             popo:'popo',
@@ -30,6 +26,12 @@ export default {
         }
     },
     created() {
+
+        noteService.query()
+            .then(notes => {
+                console.log('notes')
+                this.notes = notes;
+            })
 
     },
     computed: {
@@ -56,7 +58,7 @@ export default {
     components: {
         noteTxt,
         noteImg,
-        previewNotes,
+        listNotes,
     },
 
 
