@@ -42,3 +42,15 @@
 .text-center {
 	text-align: center;
 }
+
+.no-decor {
+	text-decoration: none;
+}
+
+.none {
+	display: none;
+}
+
+.no-opacity {
+	opacity: 0;
+}

@@ -15,8 +15,78 @@
 	font-style: italic;
 }
 
-
-body,html{
+body,
+html {
 	margin: 0;
 	height: 100vh;
 }
+
+.nav-bar{
+	position: relative;
+	height: 10vh;
+	background-color:  rgba(49, 133, 136, 0.8);
+	text-align: center;
+}
+
+.nav-bar a {
+	font-size: 2em;
+	color:white;
+	transition: .4s all;
+	margin: 0 10px;
+}
+
+.nav-bar a:hover{
+	color:orangered;
+}
+
+.nav-bar a span:active{
+	color:orangered;
+
+}
+
+/* triangles only */
+.nav-bar a span span {
+	color:transparent;
+}
+
+.nav-bar .menu-display {
+	transform: translateX(0);
+}
+
+
+
+.triangle {
+	position: absolute;
+	bottom:0;
+	border-bottom: 30px solid #41b883;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	transition: all .3s;
+	color: transparent;
+}
+
+.triangle span {
+	position: absolute;
+	top:10px;
+	transform: translateX(-50%);
+	border-bottom: 20px solid #35495e;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	color: transparent;
+	transition: all .4s;
+
+}
+
+.triangle span span {
+	position: absolute;
+	top:10px;
+	border-bottom: 10px solid white;
+	border-left: 10px solid transparent;
+	color: transparent;
+	border-right: 10px solid transparent;
+	transition: all .4s;
+
+}
+
+
+/* #35495e  vue grey*/

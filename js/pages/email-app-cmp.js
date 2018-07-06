@@ -8,7 +8,7 @@ export default {
 	template: `
     <section class="email-app">
         
-		<email-compose v-if="newEmail" @send-mail="saveEmail">
+		<email-compose v-if="newEmail" @send-mail="saveEmail" @cancel-email="closeCompose">
 		</email-compose>
 		
         <email-filter @filter-set="setFilter">
@@ -45,6 +45,9 @@ export default {
 		saveEmail(email) {
 			emailService.addEmail(email);
 			this.newEmail = !this.newEmail;
+		},
+		closeCompose(){
+			this.newEmail = false;
 		}
 	},
 	created() {

@@ -55,16 +55,7 @@ var emails = [
 ];
 
 function getOnlineEmails() {
-	return fetch(
-		`http://filltext.com/?rows=20&fname={firstName}&lname={lastName}&subject={lorem|50}`
-	)
+	return fetch(`http://filltext.com/?rows=20&subject={lorem|6}}&subject={lorem|50}`)
 		.then(res => res.json())
 		.then(data => data);
-
-	// .then(res => res.json())
-	// .then(data => console.log(data))//Promise.resolve(data));
 }
-
-// fetch('http://filltext.com/?rows=20&fname={firstName}&lname={lastName}&subject={lorem|50}')
-// 	.then(res => res.json())
-// 	.then(data => console.log(data))
