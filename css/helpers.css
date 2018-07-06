@@ -30,7 +30,7 @@
 	flex-direction: column;
 }
 
-.align stretch {
+.align-stretch {
 	align-items: stretch;
 }
 
@@ -39,7 +39,6 @@
 	margin: 0;
 	padding: 0;
 }
-
-.wrap {
-	flex-wrap: wrap;
+.text-center {
+	text-align: center;
 }

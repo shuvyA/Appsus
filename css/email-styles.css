@@ -1,0 +1,65 @@
+.del-btn {
+	position: absolute;
+	right: 3px;
+	transform: translateY(30%);
+}
+
+.email-app {
+	height: 100vh;
+	padding: 1em;
+	background-color: rgba(49, 133, 136, 0.7);
+}
+
+.email-preview {
+	background-color: rgba(255, 255, 255, 0.6);
+	position: relative;
+	display: flex;
+	padding: 0.1em;
+	width: 30vw;
+	border: 1px solid rgba(100, 100, 100, 0.7);
+	border-radius: 5px;
+}
+
+.email-details {
+	margin-left: 1em;
+	position: relative;
+	border: 1px solid black;
+	padding-left: 1em;
+	width: 65vw;
+	border: 1px solid rgba(100, 100, 100, 0.7);
+}
+
+.email-details h2 {
+	margin: 0;
+	margin-bottom: 1em;
+}
+
+.email-compose {
+	background-color: whitesmoke;
+	position: fixed;
+	width: 50vw;
+	height: 50%;
+	bottom: 10px;
+	right: 10px;
+	border-radius: 10px;
+}
+
+.email-content .new-subj {
+	width: 80%;
+	display: block;
+	margin: 10px;
+	padding: .5em;
+}
+
+.email-content .new-txt {
+	max-width: 90%;
+	/* display: block; */
+	margin: 0px 10px;
+	padding: .5em;
+	
+}
+.email-compose .email-submit{
+	position: absolute;
+    bottom: 5px;
+    right: 10px;
+}

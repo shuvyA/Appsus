@@ -1,34 +1,58 @@
 import emailService from '../service/email-service.js';
 import emailList from '../cmps/email-cmps/email-list-cmp.js';
 import progressBar from '../cmps/email-cmps/progress-bar-cmp.js';
+import emailFilter from '../cmps/email-cmps/email-filter-cmp.js';
+import emailCompose from '../cmps/email-cmps/email-compose-cmp.js';
 
 export default {
 	template: `
     <section class="email-app">
         
-        <h1>Emails</h1>
-        
-        <progress-bar :unread="unreadEmails"></progress-bar>
+		<email-compose v-if="newEmail" @send-mail="saveEmail">
+		</email-compose>
+		
+        <email-filter @filter-set="setFilter">
+		</email-filter>
+		
+        <progress-bar :unread="unreadEmails">
+		</progress-bar>
+		
+        <email-list :emails="emailsToShow" @email-read="setReadEmail">
+		</email-list>
+		
+		<button class="compose-email" @click="newEmail = !newEmail">
+		+
+		</button>
 
-        <email-list :emails="emails"></email-list>
-        <!-- @add-counter="unreadMails" -->
     </section>
     `,
 	data() {
 		return {
-			emails: []
+			emails: [],
+			newEmail: false,
+			filter: null,
+			//for future implementation
+			online: null
 		};
 	},
+	methods: {
+		setFilter(filter) {
+			this.filter = filter;
+		},
+		setReadEmail(id) {
+			emailService.setRead(id);
+		},
+		saveEmail(email) {
+			emailService.addEmail(email);
+			this.newEmail = !this.newEmail;
+		}
+	},
 	created() {
-		emailService.getMails().then(emails => {
+		emailService.getEmails().then(emails => {
 			this.emails = emails;
 		});
-	},
-	methods: {},
-	components: {
-		emailService,
-		emailList,
-		progressBar
+		// for future implementation
+		emailService.getOnlineEmails().then(email => (this.online = email));
 	},
 	computed: {
 		unreadEmails() {
@@ -37,6 +61,40 @@ export default {
 				if (email.isRead) counter++;
 			});
 			return this.emails.length - counter;
+		},
+		emailsToShow() {
+			let emailsToShow = this.emails;
+			if (emailsToShow && this.filter) {
+				if (this.filter.searchText) {
+					emailsToShow = emailsToShow.filter(email => {
+						return email.subject.includes(this.filter.searchText);
+					});
+				}
+				if (this.filter.picked !== 'all') {
+					emailsToShow = emailsToShow.filter(email => {
+						return this.filter.picked === 'read' ? email.isRead : !email.isRead;
+					});
+				}
+				// 	if (this.filter.picked === 'unread') {
+				// 		emailsToShow = emailsToShow.filter(email => {
+				// 			return !email.isRead;
+				// 		});
+				// 	}
+				// } else if (this.filter.picked === 'read') {
+				// 	emailsToShow = emailsToShow.filter(email => {
+				// 		return email.isRead;
+				// 	});
+				// }
+				// }
+			}
+			return emailsToShow;
 		}
+	},
+	components: {
+		emailService,
+		emailList,
+		progressBar,
+		emailFilter,
+		emailCompose
 	}
 };
