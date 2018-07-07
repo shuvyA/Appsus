@@ -2,17 +2,16 @@ export default {
 	props: ['unread'],
 	template: `
     <section class="progress-bar flex align-center">
-		<progress max="100" :value="progBar"></progress> <span class="margin-left">{{unread}} unread messages </span>
+		<progress max="100" :value="progBar"></progress> <span class="margin-left">{{unread[1]}} unread messages </span>
     </section>
     `,
-	data() {
-		return {};
-	},
-	created() {},
 	computed: {
 		progBar() {
-			return (length = this.unread * 20);
+			console.log(this.unread);
+			if (this.unread[0] > 0) {
+				let proportion = (parseInt(this.unread[1]) / parseInt(this.unread[0])) * 100;
+				return 100 - proportion;
+			}
 		}
-	},
-	mounted() {}
+	}
 };

@@ -61,9 +61,9 @@ export default {
 		unreadEmails() {
 			var counter = 0;
 			this.emails.forEach(email => {
-				if (email.isRead) counter++;
+				if (!email.isRead) counter++;
 			});
-			return this.emails.length - counter;
+			return [this.emails.length, counter];
 		},
 		emailsToShow() {
 			let emailsToShow = this.emails;
@@ -78,17 +78,6 @@ export default {
 						return this.filter.picked === 'read' ? email.isRead : !email.isRead;
 					});
 				}
-				// 	if (this.filter.picked === 'unread') {
-				// 		emailsToShow = emailsToShow.filter(email => {
-				// 			return !email.isRead;
-				// 		});
-				// 	}
-				// } else if (this.filter.picked === 'read') {
-				// 	emailsToShow = emailsToShow.filter(email => {
-				// 		return email.isRead;
-				// 	});
-				// }
-				// }
 			}
 			return emailsToShow;
 		}
