@@ -14,7 +14,7 @@ export default {
         <email-filter @filter-set="setFilter">
 		</email-filter>
 		
-        <progress-bar :unread="unreadEmails">
+        <progress-bar :emailCount="countEmails">
 		</progress-bar>
 		
         <email-list :emails="emailsToShow" @email-read="setReadEmail">
@@ -58,8 +58,8 @@ export default {
 		// emailService.getOnlineEmails().then(email => (this.online = email));
 	},
 	computed: {
-		unreadEmails() {
-			var counter = 0;
+		countEmails() {
+			let counter = 0;
 			this.emails.forEach(email => {
 				if (!email.isRead) counter++;
 			});

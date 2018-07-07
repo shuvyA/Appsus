@@ -1,5 +1,5 @@
 export default {
     template: `
-        <h1>Home</h1>
+        <h1>App Horse</h1>
     `
 }
