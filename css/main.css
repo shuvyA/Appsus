@@ -1,7 +1,7 @@
 @import 'helpers.css';
 @import 'notes-style.css';
-
 @import 'email-styles.css';
+@import 'triangle.css';
 
 * {
 	box-sizing: border-box;
@@ -17,14 +17,19 @@
 
 body,
 html {
+	/* background-color: #898989; */
+	background-color: #35495e;
 	margin: 0;
 	height: 100vh;
+	font-family: 'Ubuntu', sans-serif;
 }
 
 .nav-bar {
 	position: relative;
 	height: 10vh;
-	background-color: rgba(49, 133, 136, 0.8);
+	/* background-color: #206889; */
+	background-color: #35495e;
+	border-bottom: inset 2px white;
 	text-align: center;
 }
 
@@ -40,47 +45,10 @@ html {
 
 .nav-bar a span:first-child:hover {
 	transform: scale(1.1);
-	color: orangered;
-}
-
-/* triangles only */
-.nav-bar a span span {
-	color: transparent;
+	color: #41b883;
 }
 
 .nav-bar .menu-display {
 	transform: translateX(0);
+	transition: 0.4s;
 }
-
-.triangle {
-	position: absolute;
-	bottom: 0;
-	border-bottom: 30px solid #41b883;
-	border-left: 30px solid transparent;
-	border-right: 30px solid transparent;
-	transition: all 0.3s;
-	color: transparent;
-}
-
-.triangle span {
-	position: absolute;
-	top: 10px;
-	transform: translateX(-50%);
-	border-bottom: 20px solid #35495e;
-	border-left: 20px solid transparent;
-	border-right: 20px solid transparent;
-	color: transparent;
-	transition: all 0.4s;
-}
-
-.triangle span span {
-	position: absolute;
-	top: 10px;
-	border-bottom: 10px solid white;
-	border-left: 10px solid transparent;
-	color: transparent;
-	border-right: 10px solid transparent;
-	transition: all 0.4s;
-}
-
-/* #35495e  vue grey*/

@@ -1,6 +1,6 @@
 export default {
 	template: `
-		<nav class="nav-bar flex justify-center">
+		<nav class="nav-bar flex justify-center" :class="{'mobile-height' : showMenu}">
 			
 			<button class="nav-btn" @click="showMenu = !showMenu">☰</button>
 
