@@ -17,23 +17,13 @@ function saveNotes() {
 }
 
 
-// function addNote(noteId, review) {
-//     // var book = getBookById(bookid);
-//     // if (!book) return;
-//     // if (!book.reviews) book.reviews = [];
-//     var note = getBookById(noteId)
-//       .then(book => book.reviews.push(review));
-//   }
+
 
 function removeNote(noteId) {
     let noteIdx = notes.findIndex((note) => note.id === noteId)
     notes.splice(noteIdx, 1);
     saveNotes()
-    // let note = getNoteById(noteId)
-    //     .then(note => {
-    //         notes.splice(noteIdx, 1);
-    //         saveNotes()
-    //     })
+  
 }
 
 
@@ -101,14 +91,6 @@ function toggleTodo(todoId, note) {
     }
 }
 
-// getTodoById(todoId, note)
-//         .then(todo => currTodo = todo)
-
-// // if (!todo) return;
-// currTodo.isDone = !currTodo.isDone;
-// // saveTodos();
-// return Promise.resolve(currTodo);
-// }
 
 function getTodoById(todoId, note) {
 
@@ -125,8 +107,7 @@ function saveNewImg(imgBase64, noteId) {
     getNoteById(noteId)
         .then((note) => {
             note.src = imgBase64;
-            // let todoIdx = note.todos.findIndex((todo) => todo.id === todoId);
-            // note.todos.splice(todoIdx, 1);
+            
             saveNotes();
         })
 }
@@ -143,7 +124,7 @@ function saveTxt(text, title,noteId) {
         note.text = text;
         note.title = title;
         saveNotes();
-        console.log(text,'servic');
+        // console.log(text,'servic');
         
     })
 
@@ -199,7 +180,7 @@ function createNotes() {
         readAt: '',
         text: 'image one',
         title: 'one img',
-        src: '/img/101.jpg',
+        src: './img/101.jpg',
         id: utilsService.makeId(),
         type: 'note-img-preview',
     },

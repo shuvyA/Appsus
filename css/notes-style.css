@@ -43,6 +43,11 @@ max-width: 100%;
   
 }
 
+.btn-edit-txt{
+
+  background-color: aliceblue;
+}
+
 .title-img {
     background-color: #f0433c;
     border-bottom: 1px solid #d1d5da;
