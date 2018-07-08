@@ -65,10 +65,16 @@ max-width: 100%;
  
 }
 
-.donetodo {
-  background-color: #f0433c;
+.done {
+  /* background-color: #f0433c; */
+  /* color: white; */
+  text-decoration-line: line-through
 }
 
+
+.btn-todo {
+  float: right;
+}
 
 
 
