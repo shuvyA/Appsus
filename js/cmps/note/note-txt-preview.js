@@ -17,13 +17,13 @@ export default {
         <div class="main-text" ref="myTxt" :class="{'edit-txt': statusEdit}">
             {{note.text}}  
         </div>
-        <div v-if="statusEdit">
-            save?
-        <button  @click.prevent="saveTxt()">✔</button>
-        <button  @click.prevent="closeTxtEdit">✘</button>
-
-
-        </div>
+            <div class="btn-edit-txt" v-if="statusEdit">
+                save?
+                <button  @click.prevent="saveTxt()">✔</button>
+                <button  @click.prevent="closeTxtEdit">✘</button>
+                
+                
+            </div>
     </section>
 
     `,

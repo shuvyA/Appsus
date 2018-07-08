@@ -11,8 +11,10 @@ export default {
     template: `
 
     <section class="list-notes-cmp">
-        <h1>preview </h1>
-        
+
+    
+    <button @click.prevent="addNote">✚</button>
+
        <div class="masonry" v-if="notes">
 
             <component v-for="(note, idx) in notes" :is="note.type" :key="idx" :note="note" 
@@ -48,6 +50,10 @@ export default {
         saveTxt(text, title, noteId) {
             noteService.saveTxt(text, title, noteId)
         },
+        addNote(){
+            console.log('add note');
+            
+        }
 
 
     },

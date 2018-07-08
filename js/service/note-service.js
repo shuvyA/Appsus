@@ -199,7 +199,7 @@ function createNotes() {
         readAt: '',
         text: 'image one',
         title: 'one img',
-        src: '/img/101.jpg',
+        src: './img/101.jpg',
         id: utilsService.makeId(),
         type: 'note-img-preview',
     },
