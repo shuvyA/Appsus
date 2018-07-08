@@ -1,8 +1,6 @@
 import noteService from '../service/note-service.js'
 import utilsService from '../service/utils.js'
 
-import noteTxt from '../cmps/note/note-txt-cmp.js';
-import noteImg from '../cmps/note/note-img-cmp.js';
 import listNotes from '../cmps/note/list-notes-cmp.js';
 
 const NOTES_KEY = 'NOTES_KEY';
@@ -56,8 +54,7 @@ export default {
 
     },
     components: {
-        noteTxt,
-        noteImg,
+       
         listNotes,
     },
 
