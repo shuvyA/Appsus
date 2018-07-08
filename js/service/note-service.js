@@ -67,9 +67,9 @@ function addTodo(todoTxt, noteId) {
 
 
 function deleteTodo(todoId, noteId) {
-     getNoteById(noteId)
+    getNoteById(noteId)
         .then((note) => {
-            
+
             let todoIdx = note.todos.findIndex((todo) => todo.id === todoId);
             note.todos.splice(todoIdx, 1);
             saveNotes();
@@ -121,15 +121,33 @@ function getTodoById(todoId, note) {
 
 // *********************************img***************************88
 
- function saveNewImg(imgBase64,noteId){
+function saveNewImg(imgBase64, noteId) {
+    getNoteById(noteId)
+        .then((note) => {
+            note.src = imgBase64;
+            // let todoIdx = note.todos.findIndex((todo) => todo.id === todoId);
+            // note.todos.splice(todoIdx, 1);
+            saveNotes();
+        })
+}
+
+
+
+// **************************** txt***************************8
+
+
+
+function saveTxt(text, title,noteId) {
     getNoteById(noteId)
     .then((note) => {
-        note.src= imgBase64;
-        // let todoIdx = note.todos.findIndex((todo) => todo.id === todoId);
-        // note.todos.splice(todoIdx, 1);
+        note.text = text;
+        note.title = title;
         saveNotes();
+        console.log(text,'servic');
+        
     })
- }
+
+}
 
 function createNotes() {
     return [{
@@ -242,5 +260,6 @@ export default {
     addTodo,
     deleteTodo,
     saveNewImg,
+    saveTxt,
     // createTodo,
 }

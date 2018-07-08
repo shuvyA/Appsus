@@ -13,27 +13,5 @@ export default {
 
 
     
-
-    
-    
-    
-    
     `
 }
-
-// <!-- <a href="#galleryI"> -->
-// </a> -->
-
-// flex align-center column justify-center space-around
-
-// flex align-center column justify-center space-around
-
-
-{/* <div class="cover-img  text-cover">
-        <div class="text-cover ">
-            <h1 class="animated swing">App-sus</h1>
-            <button class="btn-cover" type="button" onclick="">E-mail</button>
-            <button class="btn-cover" type="button" onclick="">Keep</button>
-            
-        </div>
-    </div> */}
