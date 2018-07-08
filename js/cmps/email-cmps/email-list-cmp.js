@@ -41,7 +41,6 @@ export default {
 		deleteEmail(id) {
 			console.log('got id', id);
 			this.$emit('delete-email', id);
-			// emailService.deleteEmailByIdx(id);
 			this.selectedEmail = null;
 		}
 	},

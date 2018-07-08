@@ -2,10 +2,11 @@ export default {
 	props: ['email'],
 	template: `
     <section class="email-preview"  @click="selectEmail">
-           <p class="preview flex"> {{email.subject}} <br/> 
-			{{mail.time}} {{mail.date}}  
-			</p>
-
+        <p class="preview-subj flex"> {{email.subject}}
+		</p>
+		<br/>
+		<span class="mail-time">	{{mail.time}} {{mail.date}}  
+		</span>
 			<button class="del-btn" @click.stop="onDeleteEmail">&times;</button>
 
     </section>
@@ -24,7 +25,7 @@ export default {
 		},
 		formattedTime() {
 			let sentAt = JSON.stringify(this.email.sentAt);
-			this.mail.time = sentAt.substring(15, 20);
+			this.mail.time = sentAt.substring(12, 17);
 			this.mail.date = sentAt.substring(1, 11);
 		},
 		onDeleteEmail() {

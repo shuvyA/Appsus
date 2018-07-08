@@ -61,7 +61,6 @@ export default {
 					if (a.subject.toLowerCase() < b.subject.toLowerCase()) return -1;
 					if (a.subject.toLowerCase() > b.subject.toLowerCase()) return 1;
 					return 0;
-					// a.subject.toLowerCase() - b.subject.toLowerCase();
 				});
 			}
 

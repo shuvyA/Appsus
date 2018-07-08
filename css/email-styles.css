@@ -24,9 +24,9 @@ nav.nav-bar.mobile-height {
 
 .del-btn {
 	position: absolute;
-	right: 3px;
-	top: 0;
-	transform: translateY(50%);
+	right: 5px;
+	top: 5px;
+	/* transform: translateY(50%); */
 }
 
 button.compose-email {
@@ -89,11 +89,24 @@ button.compose-email {
 	background-color: #ebebeb;
 	position: relative;
 	display: flex;
-	padding: 0.1em;
+	flex-direction: column;
+	padding: 0.5em;
 	width: 30vw;
 	border: 1px solid rgba(100, 100, 100, 0.7);
 	border-radius: 5px;
 	cursor: pointer;
+}
+
+.email-preview .preview-subj {
+	overflow: hidden;
+	margin: 0;
+	max-width: 85%;
+	padding-left: 0.5em;
+}
+
+.mail-time {
+	order: 1;
+	align-self: flex-end;
 }
 
 .email-details {
@@ -119,12 +132,6 @@ button.compose-email {
 .email-details p {
 	padding-bottom: 1em;
 	margin-bottom: 1em;
-}
-
-.email-preview .preview {
-	overflow: hidden;
-	margin: 0;
-	max-width: 85%;
 }
 
 @media (max-width: 780px) {
