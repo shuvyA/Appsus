@@ -8,7 +8,7 @@ export default {
 	emptyEmail,
 	addEmail,
 	query,
-	getOnlineEmails
+	// getOnlineEmails
 };
 
 var emails = utils.loadFromStorage(EMAILS_KEY);
@@ -61,14 +61,14 @@ function createEmails() {
 	];
 }
 
-// function getOnlineEmails() {
-// 	return fetch('http://www.filltext.com/?rows=20&subject={lorem|6}&body={lorem|50}')
-// 		.then(res => res.json())
-// 		.then(data =>
-// 			data.forEach((item, idx) => {
-// 				data.id = utils.makeId();
-// 				console.log(data);
-// 				data.sentAt = getTime();
-// 			})
-// 		);
-// }
+function getOnlineEmails() {
+	return fetch('http://www.filltext.com/?rows=20&subject={lorem|6}&body={lorem|50}')
+		.then(res => res.json())
+		.then(data =>
+			data.forEach((item, idx) => {
+				data.id = utils.makeId();
+				console.log(data);
+				data.sentAt = getTime();
+			})
+		);
+}
