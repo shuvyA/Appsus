@@ -39,7 +39,6 @@ export default {
 			this.selectedEmail = null;
 		},
 		deleteEmail(id) {
-			console.log('got id', id);
 			this.$emit('delete-email', id);
 			this.selectedEmail = null;
 		}

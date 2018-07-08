@@ -50,11 +50,9 @@ export default {
 			this.newEmail = false;
 		},
 		deleteEmail(id) {
-			console.log('deleting id:', id);
 			emailService.deleteEmailById(id);
 		},
 		sortSubject(sort) {
-			console.log('recieved sort :', sort);
 			let sortedEmails = this.emails;
 			if (sort) {
 				sortedEmails = sortedEmails.sort((a, b) => {
@@ -76,7 +74,11 @@ export default {
 			this.emails = emails;
 		});
 		// for future implementation
-		// emailService.getOnlineEmails().then(email => (this.online = email));
+		// emailService.getOnlineEmails().then(emails => {
+		// 	console.log(emails);
+			
+		// 	this.online = emails;
+		// });
 	},
 	computed: {
 		countEmails() {
@@ -108,6 +110,7 @@ export default {
 		emailList,
 		progressBar,
 		emailFilter,
-		emailCompose
+		emailCompose,
+		
 	}
 };

@@ -102,6 +102,7 @@ button.compose-email {
 	margin: 0;
 	max-width: 85%;
 	padding-left: 0.5em;
+	text-transform: capitalize;
 }
 
 .mail-time {
