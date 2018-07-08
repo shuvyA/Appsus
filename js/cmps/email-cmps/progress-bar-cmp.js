@@ -4,15 +4,17 @@ export default {
 	props: ['emailCount'],
 	template: `
     <section class="progress-bar flex align-center">
-		<progress max="100" :value="progBar"></progress> <span class="margin-left">{{emailCount[1]}} unread messages </span>
+		<progress max="100" :value="progBar"></progress> 
+		<span class="margin-left">{{emailCount[1]}} unread messages </span>
     </section>
-    `,
+		`,
 	computed: {
 		progBar() {
-			if (this.emailCount[0] > 0) {
+			if (this.emailCount) {
 				let proportion = (parseInt(this.emailCount[1]) / parseInt(this.emailCount[0])) * 100;
 				return 100 - proportion;
 			}
+			return 100;
 		}
 	}
 };

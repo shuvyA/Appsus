@@ -14,7 +14,7 @@ export default {
         <email-filter @filter-set="setFilter" @sort-subject="sortSubject">
 		</email-filter>
 		
-        <progress-bar :emailCount="countEmails">
+        <progress-bar v-if="emails.length > 0" :emailCount="countEmails">
 		</progress-bar>
 		
         <email-list :emails="emailsToShow" @email-read="setReadEmail" @delete-email="deleteEmail">
@@ -50,6 +50,7 @@ export default {
 		deleteEmail(id) {
 			emailService.deleteEmailById(id);
 		},
+
 		sortSubject(sort) {
 			let sortedEmails = this.emails;
 			if (sort) {
@@ -79,6 +80,7 @@ export default {
 				this.emails.forEach(email => {
 					if (!email.isRead) counter++;
 				});
+				console.log('counter is:', counter);
 				return [this.emails.length, counter];
 			}
 		},
