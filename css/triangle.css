@@ -1,5 +1,6 @@
 .triangle {
 	position: absolute;
+	transform: translateX(30%);
 	bottom: 0;
 	border-bottom: 30px solid #41b883;
 	border-left: 30px solid transparent;

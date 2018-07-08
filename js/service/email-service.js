@@ -1,18 +1,24 @@
 import utils from './utils.js';
 
-const KEY = 'EMAILS';
+const EMAILS_KEY = 'EMAILS';
 
 export default {
-	getEmails,
-	getMailById,
-	deleteEmailByIdx,
+	deleteEmailById,
 	setRead,
 	emptyEmail,
-	addEmail
+	addEmail,
+	query
 };
 
-function getEmails() {
+var emails = utils.loadFromStorage(EMAILS_KEY);
+if (!emails || emails.length === 0) emails = createEmails();
+
+function query() {
 	return Promise.resolve(emails);
+}
+
+function saveEmails() {
+	utils.saveToStorage(EMAILS_KEY, emails);
 }
 
 function emptyEmail() {
@@ -32,30 +38,27 @@ function getTime() {
 
 function addEmail(email) {
 	Promise.resolve(emails.unshift(email));
+	saveEmails();
 }
 
-function getMailById(id) {
-	let mail = mail.find(mail => mail.id === id);
-	return Promise.resolve(mail);
-}
-
-function setRead(id) {
-	let email = emails.find(email => email.id === id);
+function setRead(email) {
 	email.isRead = true;
-	utils.saveToStorage(KEY, emails);
+	saveEmails();
 }
 
-function deleteEmailByIdx(id) {
+function deleteEmailById(id) {
 	let idx = emails.findIndex(mail => mail.id === id);
-	return Promise.resolve(emails.splice(idx, 1));
+	emails.splice(idx, 1);
+	saveEmails();
 }
 
-var emails = [
-	{ subject: 'first', body: 'body1', isRead: false, sentAt: getTime(), id: utils.makeId() },
-	{ subject: 'second', body: 'body2', isRead: false, sentAt: getTime(), id: utils.makeId() },
-	{ subject: 'third', body: 'body3', isRead: false, sentAt: getTime(), id: utils.makeId() }
-];
-
+function createEmails() {
+	return [
+		{ subject: 'first', body: 'body1', isRead: false, sentAt: getTime(), id: utils.makeId() },
+		{ subject: 'second', body: 'body2', isRead: false, sentAt: getTime(), id: utils.makeId() },
+		{ subject: 'third', body: 'body3', isRead: false, sentAt: getTime(), id: utils.makeId() }
+	];
+}
 function getOnlineEmails() {
 	return fetch(`http://filltext.com/?rows=20&subject={lorem|6}}&subject={lorem|50}`)
 		.then(res => res.json())

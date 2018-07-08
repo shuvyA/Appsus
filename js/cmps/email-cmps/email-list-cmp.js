@@ -33,14 +33,14 @@ export default {
 	methods: {
 		selectEmail(email) {
 			!this.selectedEmail ? (this.selectedEmail = email) : (this.selectedEmail = null);
-			this.$emit('email-read', email.id);
+			this.$emit('email-read', email);
 		},
 		closeMail() {
 			this.selectedEmail = null;
 		},
 		deleteEmail(id) {
 			console.log('got id', id);
-			this.$emit('delete-email', id)
+			this.$emit('delete-email', id);
 			// emailService.deleteEmailByIdx(id);
 			this.selectedEmail = null;
 		}

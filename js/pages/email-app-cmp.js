@@ -3,9 +3,6 @@ import emailList from '../cmps/email-cmps/email-list-cmp.js';
 import progressBar from '../cmps/email-cmps/progress-bar-cmp.js';
 import emailFilter from '../cmps/email-cmps/email-filter-cmp.js';
 import emailCompose from '../cmps/email-cmps/email-compose-cmp.js';
-import utils from '../service/utils.js';
-
-const KEY = 'EMAILS';
 
 export default {
 	template: `
@@ -14,7 +11,7 @@ export default {
 		<email-compose v-if="newEmail" @send-mail="saveEmail" @cancel-email="closeCompose">
 		</email-compose>
 		
-        <email-filter @filter-set="setFilter">
+        <email-filter @filter-set="setFilter" @sort-subject="sortSubject">
 		</email-filter>
 		
         <progress-bar :emailCount="countEmails">
@@ -42,9 +39,8 @@ export default {
 		setFilter(filter) {
 			this.filter = filter;
 		},
-		setReadEmail(id) {
-			emailService.setRead(id);
-			//bug
+		setReadEmail(email) {
+			emailService.setRead(email);
 		},
 		saveEmail(email) {
 			emailService.addEmail(email);
@@ -54,15 +50,30 @@ export default {
 			this.newEmail = false;
 		},
 		deleteEmail(id) {
-			console.log('mail app got id:', id);
-			emailService.deleteEmailByIdx(id);
+			console.log('deleting id:', id);
+			emailService.deleteEmailById(id);
+		},
+		sortSubject(sort) {
+			console.log('recieved sort :', sort);
+			let sortedEmails = this.emails;
+			if (sort) {
+				sortedEmails = sortedEmails.sort((a, b) => {
+					if (a.subject.toLowerCase() < b.subject.toLowerCase()) return -1;
+					if (a.subject.toLowerCase() > b.subject.toLowerCase()) return 1;
+					return 0;
+					// a.subject.toLowerCase() - b.subject.toLowerCase();
+				});
+			}
+
+			if (!sort) {
+				sortedEmails = sortedEmails.reverse();
+			}
+
+			return (this.emails = sortedEmails);
 		}
 	},
 	created() {
-		if (utils.loadFromStorage(KEY) && utils.loadFromStorage(KEY).length > 0) {
-			return (this.emails = utils.loadFromStorage(KEY));
-		}
-		emailService.getEmails().then(emails => {
+		emailService.query().then(emails => {
 			this.emails = emails;
 		});
 		// for future implementation
@@ -98,7 +109,6 @@ export default {
 		emailList,
 		progressBar,
 		emailFilter,
-		emailCompose,
-		utils
+		emailCompose
 	}
 };

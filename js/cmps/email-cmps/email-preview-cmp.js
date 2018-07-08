@@ -37,4 +37,3 @@ export default {
 	},
 	computed: {}
 };
-// { subject: 'first', body: 'body1', isRead: false, sentAt: getTime() },

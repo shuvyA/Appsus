@@ -12,7 +12,10 @@ export default {
     </label>
     <label>
         <input type="radio" value="unread" v-model="filter.picked" @change="setFilter" /> Unread
-    </label>
+	</label>
+		<label>
+			<button  @click="setSort">Sort by subject</button>
+		</label>
 
     </section>
 `,
@@ -21,12 +24,17 @@ export default {
 			filter: {
 				searchText: '',
 				picked: 'all'
-			}
+			},
+			sort: false
 		};
 	},
 	methods: {
 		setFilter() {
 			return this.$emit('filter-set', this.filter);
+		},
+		setSort() {
+			this.sort = !this.sort;
+			this.$emit('sort-subject', this.sort);
 		}
 	}
 };
