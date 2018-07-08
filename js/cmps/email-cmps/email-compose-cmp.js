@@ -4,11 +4,12 @@ import emailService from '../../service/email-service.js';
 export default {
 	template: `
     <section class="email-compose">
-	<div class="email-content">
+		
 		<input class="new-subj" type="text" placeholder="subject" v-model="email.subject" />
 		<br/>
     	<textarea  class="new-txt" rows="8" cols="50" placeholder="body" v-model="email.body" />
-	</div>
+
+	<button class="email-cancel" @click="cancelEmail">&times;</button>
 	<button class="email-submit" @click="sendEmail" :disabled="!isValid">submit</button>
 
     </section>
@@ -24,7 +25,10 @@ export default {
 	methods: {
 		sendEmail() {
 			this.$emit('send-mail', this.email);
-			emailService.emptyEmail().then(newEmail => (this.email = newEmail))
+			emailService.emptyEmail().then(newEmail => (this.email = newEmail));
+		},
+		cancelEmail(){
+			this.$emit('cancel-email');
 		}
 	},
 	computed: {

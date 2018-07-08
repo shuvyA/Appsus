@@ -1,0 +1,35 @@
+.triangle {
+	position: absolute;
+	bottom: 0;
+	border-bottom: 30px solid #41b883;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	transition: all 0.3s;
+	color: transparent;
+}
+
+.triangle span {
+	position: absolute;
+	top: 10px;
+	transform: translateX(-50%);
+	border-bottom: 20px solid #35495e;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	color: transparent;
+	transition: all 0.4s;
+}
+
+.triangle span span {
+	position: absolute;
+	top: 10px;
+	border-bottom: 10px solid white;
+	border-left: 10px solid transparent;
+	color: transparent;
+	border-right: 10px solid transparent;
+	transition: all 0.4s;
+}
+
+/* triangles only */
+.nav-bar a span span {
+	color: transparent;
+}

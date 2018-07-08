@@ -2,8 +2,10 @@ export default {
 	props: ['email'],
 	template: `
     <section class="email-preview"  @click="selectEmail">
-            {{email.subject}} <br/> 
+           <p class="preview flex"> {{email.subject}} <br/> 
 			{{mail.time}} {{mail.date}}  
+			</p>
+
 			<button class="del-btn" @click.stop="onDeleteEmail">&times;</button>
 
     </section>

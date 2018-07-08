@@ -1,13 +1,14 @@
 import utils from './utils.js';
 
+const KEY = 'EMAILS';
+
 export default {
 	getEmails,
 	getMailById,
 	deleteEmailByIdx,
 	setRead,
 	emptyEmail,
-	addEmail,
-	getOnlineEmails
+	addEmail
 };
 
 function getEmails() {
@@ -39,13 +40,14 @@ function getMailById(id) {
 }
 
 function setRead(id) {
-	let email = emails.find(mail => mail.id === id);
+	let email = emails.find(email => email.id === id);
 	email.isRead = true;
+	utils.saveToStorage(KEY, emails);
 }
 
 function deleteEmailByIdx(id) {
 	let idx = emails.findIndex(mail => mail.id === id);
-	emails.splice(idx, 1);
+	return Promise.resolve(emails.splice(idx, 1));
 }
 
 var emails = [
@@ -55,16 +57,7 @@ var emails = [
 ];
 
 function getOnlineEmails() {
-	return fetch(
-		`http://filltext.com/?rows=20&fname={firstName}&lname={lastName}&subject={lorem|50}`
-	)
+	return fetch(`http://filltext.com/?rows=20&subject={lorem|6}}&subject={lorem|50}`)
 		.then(res => res.json())
 		.then(data => data);
-
-	// .then(res => res.json())
-	// .then(data => console.log(data))//Promise.resolve(data));
 }
-
-// fetch('http://filltext.com/?rows=20&fname={firstName}&lname={lastName}&subject={lorem|50}')
-// 	.then(res => res.json())
-// 	.then(data => console.log(data))

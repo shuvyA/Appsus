@@ -12,7 +12,6 @@ export default {
                 :class="[email.isRead? 'italic' : 'bold']">
 
                 <email-preview :email="email" @select-email="selectEmail"   @delete-email="deleteEmail">
-
                 </email-preview>
                 
                 </li>
@@ -33,14 +32,16 @@ export default {
 	},
 	methods: {
 		selectEmail(email) {
-			(!this.selectedEmail) ? (this.selectedEmail = email) : (this.selectedEmail = null);
+			!this.selectedEmail ? (this.selectedEmail = email) : (this.selectedEmail = null);
 			this.$emit('email-read', email.id);
 		},
 		closeMail() {
 			this.selectedEmail = null;
 		},
 		deleteEmail(id) {
-			emailService.deleteEmailByIdx(id);
+			console.log('got id', id);
+			this.$emit('delete-email', id)
+			// emailService.deleteEmailByIdx(id);
 			this.selectedEmail = null;
 		}
 	},
