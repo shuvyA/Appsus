@@ -8,11 +8,16 @@ export default {
 	emptyEmail,
 	addEmail,
 	query,
-	// getOnlineEmails
+	getOnlineEmails
 };
 
 var emails = utils.loadFromStorage(EMAILS_KEY);
-if (!emails || emails.length === 0) emails = createEmails();
+if (!emails || emails.length === 0) {
+	getOnlineEmails().then(onlineEmails => {
+		emails = onlineEmails;
+		saveEmails(EMAILS_KEY, emails);
+	});
+}
 
 function query() {
 	return Promise.resolve(emails);
@@ -62,13 +67,16 @@ function createEmails() {
 }
 
 function getOnlineEmails() {
-	return fetch('http://www.filltext.com/?rows=20&subject={lorem|6}&body={lorem|50}')
-		.then(res => res.json())
-		.then(data =>
-			data.forEach((item, idx) => {
-				data.id = utils.makeId();
-				console.log(data);
-				data.sentAt = getTime();
-			})
-		);
+	var prm = new Promise(resolve => {
+		fetch('http://www.filltext.com/?rows=20&subject={lorem|6}&body={lorem|50}')
+			.then(res => res.json())
+			.then(data => {
+				data.forEach((mail, idx) => {
+					data[idx].id = utils.makeId();
+					data[idx].sentAt = getTime();
+				});
+				resolve(data);
+			});
+	});
+	return prm;
 }

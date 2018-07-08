@@ -1,4 +1,3 @@
-import utils from '../../service/utils.js';
 import emailService from '../../service/email-service.js';
 
 export default {
@@ -27,7 +26,7 @@ export default {
 			this.$emit('send-mail', this.email);
 			emailService.emptyEmail().then(newEmail => (this.email = newEmail));
 		},
-		cancelEmail(){
+		cancelEmail() {
 			this.$emit('cancel-email');
 		}
 	},
@@ -37,8 +36,7 @@ export default {
 		}
 	},
 	components: {
-		emailService,
-		utils
+		emailService
 	}
 };
 

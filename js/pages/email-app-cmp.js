@@ -8,7 +8,7 @@ export default {
 	template: `
     <section class="email-app">
         
-		<email-compose v-if="newEmail" @send-mail="saveEmail" @cancel-email="closeCompose">
+		<email-compose :class="[newEmail? 'opacity' : 'no-opacity']" @send-mail="saveEmail" @cancel-email="closeCompose"> 
 		</email-compose>
 		
         <email-filter @filter-set="setFilter" @sort-subject="sortSubject">
@@ -30,9 +30,7 @@ export default {
 		return {
 			emails: [],
 			newEmail: false,
-			filter: null,
-			//for future implementation
-			online: null
+			filter: null
 		};
 	},
 	methods: {
@@ -70,23 +68,19 @@ export default {
 		}
 	},
 	created() {
-		emailService.query().then(emails => {
-			this.emails = emails;
+		emailService.query().then(onlineEmails => {
+			this.emails = onlineEmails;
 		});
-		// for future implementation
-		// emailService.getOnlineEmails().then(emails => {
-		// 	console.log(emails);
-			
-		// 	this.online = emails;
-		// });
 	},
 	computed: {
 		countEmails() {
-			let counter = 0;
-			this.emails.forEach(email => {
-				if (!email.isRead) counter++;
-			});
-			return [this.emails.length, counter];
+			if (this.emails) {
+				let counter = 0;
+				this.emails.forEach(email => {
+					if (!email.isRead) counter++;
+				});
+				return [this.emails.length, counter];
+			}
 		},
 		emailsToShow() {
 			let emailsToShow = this.emails;
@@ -110,7 +104,6 @@ export default {
 		emailList,
 		progressBar,
 		emailFilter,
-		emailCompose,
-		
+		emailCompose
 	}
 };

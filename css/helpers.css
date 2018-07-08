@@ -54,6 +54,10 @@
 .no-opacity {
 	opacity: 0;
 }
+.opacity {
+	opacity: 1;
+}
+
 .margin-left {
 	margin-left: 10px;
 }
