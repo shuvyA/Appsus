@@ -62,6 +62,8 @@ export default {
 
             var txt = this.$refs.myTxt;
             var title = this.$refs.myTitle;
+            txt.contentEditable = "false";
+            title.contentEditable = "false";
           
             this.$emit('save-txt',  txt.innerText,  title.innerText, this.note.id);
             // this.$emit('save-txt', this.note.text, this.note.title, this.note.id);
