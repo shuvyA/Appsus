@@ -68,14 +68,15 @@ export default {
                 // console.log('popopo', reader.result)
                 // console.log('popopo', e.target.result)
                 this.note.src = reader.result;
+                this.$emit('save-img', reader.result, this.note.id)
                 this.imgEdit = false;
                 // vm.image = e.target.result;
             };
             reader.readAsDataURL(file);
         },
-        removeImage: function (e) {
-            this.image = '';
-        }
+        // removeImage: function (e) {
+        //     this.image = '';
+        // }
 
     },
 

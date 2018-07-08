@@ -7,21 +7,8 @@ if (!notes || notes.length === 0) notes = createNotes();
 
 
 
-// utilsService.saveToStorage(key, value);
-
-
-// utilsService.loadFromStorage(key)
-
-
-
 function query() {
-    // debugger;
 
-    // var notes = utilsService.loadFromStorage(NOTES_KEY);
-    // if (notes) return Promise.resolve(notes);
-
-
-    // utilsService.saveToStorage(NOTES_KEY, notes)
     return Promise.resolve(notes);
 }
 
@@ -40,12 +27,13 @@ function saveNotes() {
 
 function removeNote(noteId) {
     let noteIdx = notes.findIndex((note) => note.id === noteId)
-
-    let note = getNoteById(noteId)
-        .then(note =>{
-            notes.splice(noteIdx, 1);
-            saveNotes()
-        })
+    notes.splice(noteIdx, 1);
+    saveNotes()
+    // let note = getNoteById(noteId)
+    //     .then(note => {
+    //         notes.splice(noteIdx, 1);
+    //         saveNotes()
+    //     })
 }
 
 
@@ -68,21 +56,24 @@ function createTodo(txt) {
     }
 }
 
-function addTodo(todoTxt) {
+function addTodo(todoTxt, noteId) {
     var newTodo = createTodo(todoTxt);
-    todos.unshift(newTodo);
-    saveTodos();
-    return Promise.resolve(newTodo);
+    getNoteById(noteId).then((note) => {
+
+        note.todos.unshift(newTodo);
+        saveNotes();
+    })
 }
 
 
-function deleteTodo(id) {
-    var todoIdx = getTodoIdxById(id)
-    if (todoIdx === -1) return;
-    todos.splice(todoIdx, 1);
-    saveTodos();
-    return Promise.resolve();
-
+function deleteTodo(todoId, noteId) {
+     getNoteById(noteId)
+        .then((note) => {
+            
+            let todoIdx = note.todos.findIndex((todo) => todo.id === todoId);
+            note.todos.splice(todoIdx, 1);
+            saveNotes();
+        })
 }
 
 function toggleTodo(todoId, note) {
@@ -120,11 +111,25 @@ function toggleTodo(todoId, note) {
 // }
 
 function getTodoById(todoId, note) {
- 
+
     var currNote = notes.find(notea => notea === note)
     var todo = currNote.todos.find(todo => todo.id === todoId);
     return Promise.resolve(todo)
 }
+
+
+
+// *********************************img***************************88
+
+ function saveNewImg(imgBase64,noteId){
+    getNoteById(noteId)
+    .then((note) => {
+        note.src= imgBase64;
+        // let todoIdx = note.todos.findIndex((todo) => todo.id === todoId);
+        // note.todos.splice(todoIdx, 1);
+        saveNotes();
+    })
+ }
 
 function createNotes() {
     return [{
@@ -171,7 +176,7 @@ function createNotes() {
         id: utilsService.makeId(),
         type: 'note-txt-preview',
     },
-    
+
     {
         readAt: '',
         text: 'image one',
@@ -218,12 +223,12 @@ function createNotes() {
             { name: 'java', isDone: false, id: utilsService.makeId() },
             { name: 'angular', isDone: false, id: utilsService.makeId() },
             { name: 'explorer', isDone: false, id: utilsService.makeId() }],
-    
+
         id: utilsService.makeId(),
         type: 'note-todo-preview',
     },
-    
-    
+
+
     ];
 }
 
@@ -234,5 +239,8 @@ export default {
     removeNote,
     getTodoById,
     toggleTodo,
-    createTodo,
+    addTodo,
+    deleteTodo,
+    saveNewImg,
+    // createTodo,
 }

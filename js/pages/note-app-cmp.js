@@ -27,17 +27,12 @@ export default {
         }
     },
     created() {
-        // if (utilsService.loadFromStorage(NOTES_KEY) && (utilsService.loadFromStorage(NOTES_KEY).length > 0)) {
-        //     return (this.notes = utilsService.loadFromStorage(NOTES_KEY));
-        // }else {
-
+       
         noteService.query()
             .then(notes => {
                 console.log('notes')
                 this.notes = notes;
             })
-        // }
-
     },
     computed: {
 

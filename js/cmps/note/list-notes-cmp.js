@@ -15,7 +15,8 @@ export default {
         
        <div class="masonry" v-if="notes">
 
-            <component v-for="(note, idx) in notes" :is="note.type" :key="idx" :note="note" @del-note="removeNote"> 
+            <component v-for="(note, idx) in notes" :is="note.type" :key="idx" :note="note" 
+            @del-note="removeNote" @add-todo="addTodo" @del-todo="delTodo" @save-img="saveNewImg"> 
 
             </component>
                 
@@ -31,6 +32,15 @@ export default {
     methods: {
         removeNote(noteId) {
             noteService.removeNote(noteId)
+        },
+        addTodo(newTxtTodo, noteId) {
+            noteService.addTodo(newTxtTodo, noteId);
+        },
+        delTodo(todoId, noteId){
+            noteService.deleteTodo(todoId, noteId)
+        },
+        saveNewImg(imgBase64, noteId) {
+            noteService.saveNewImg(imgBase64, noteId);
         }
 
 

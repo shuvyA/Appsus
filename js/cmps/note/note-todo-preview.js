@@ -17,7 +17,7 @@ export default {
 </div>
 <ul class="clean-list main-todo">
     <input v-model="newTodo" />
-    <button @click.prevent="addTodo">✚</button>
+    <button @click.prevent="addTodo(note.id)">✚</button>
         <li v-for="todo in todos">
             <div class="flex space-between"> 
                <div v-bind:class="{done : todo.isDone}" 
@@ -27,7 +27,7 @@ export default {
            
               <div >
                 <!-- <button>✎</button> -->
-                <button @click.stop="deleteTodo(todo.id)">✘</button>
+                <button @click.stop="deleteTodo(todo.id, note.id)">✘</button>
               </div>
 
             </div>    
@@ -56,22 +56,21 @@ export default {
         toggleDone(todoId, note) {
             noteService.toggleTodo(todoId, note);
 
-            // noteService.getTodoById(todoId, note).then()
         },
-        addTodo() {
-            console.log(this.newTodo);
+        addTodo(noteId) {
             if (this.newTodo === '') return
-            var newTodoObj = noteService.createTodo(this.newTodo)
-            this.todos.push(newTodoObj);
+
+            this.$emit('add-todo', this.newTodo, noteId)
+
             this.newTodo = '';
         },
 
-        deleteTodo(todoId) {
+        deleteTodo(todoId, noteId) {
             console.log('del', todoId);
+            this.$emit('del-todo', todoId, noteId)
 
             let todoIdx = this.todos.findIndex((todo) => todo.id === todoId)
             this.todos.splice(todoIdx, 1)
-
         }
     }
 }
