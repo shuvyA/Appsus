@@ -1,6 +1,5 @@
 import emailPreview from './email-preview-cmp.js';
 import emailDetails from './email-details-cmp.js';
-import emailService from '../../service/email-service.js';
 
 export default {
 	props: ['emails'],
@@ -27,7 +26,8 @@ export default {
 	data() {
 		return {
 			selectedEmail: null,
-			newEmail: null
+			// ??
+			// newEmail: null
 		};
 	},
 	methods: {
@@ -40,12 +40,11 @@ export default {
 		},
 		deleteEmail(id) {
 			this.$emit('delete-email', id);
-			this.selectedEmail = null;
+			this.selectedEmail = false;
 		}
 	},
 	components: {
 		emailPreview,
 		emailDetails,
-		emailService
 	}
 };
