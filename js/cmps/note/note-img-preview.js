@@ -14,7 +14,15 @@ export default {
                 <button @click.prevent="deleteNote">✘</button>
             </div>
 </div>
-      
+<div v-if=" imgEdit">
+    <!-- <h2>Select an image</h2> -->
+    <input type="file" @change="onFileChange">
+  </div>
+  <div v-else>
+    <!-- <img :src="image" /> -->
+    <!-- <button @click="removeImage">Remove image</button> -->
+  </div>
+
     <img :src=note.src />
     
             
@@ -26,7 +34,8 @@ export default {
     },
     data() {
         return {
-
+            imgEdit: false,
+            image: '',
 
         }
     },
@@ -38,8 +47,36 @@ export default {
         },
         EditNoteImg() {
             console.log('img edit');
-            
+            this.imgEdit = true;
+
+
         },
+
+        onFileChange(e) {
+            var files = e.target.files || e.dataTransfer.files;
+            if (!files.length)
+                return;
+            this.createImage(files[0]);
+        },
+        createImage(file) {
+            var image = new Image();
+            var reader = new FileReader();
+            // this.note.src = new FileReader();
+            var vm = this;
+
+            reader.onload = (e) => {
+                // console.log('popopo', reader.result)
+                // console.log('popopo', e.target.result)
+                this.note.src = reader.result;
+                this.$emit('save-img', reader.result, this.note.id)
+                this.imgEdit = false;
+                // vm.image = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        },
+        // removeImage: function (e) {
+        //     this.image = '';
+        // }
 
     },
 
