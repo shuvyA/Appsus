@@ -70,6 +70,24 @@ max-width: 100%;
  
 }
 
+.title-new-note {
+  background-color: #617d89;
+  border-bottom: 1px solid #d1d5da;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  padding: 15px;
+  width: 300px;
+  margin-top: 25px;
+}
+
+.main-new-note {
+  padding: 10px; 
+  background-color: aliceblue;
+  width: 300px;
+  margin-bottom: 25px;
+}
+
+
 .done {
   /* background-color: #f0433c; */
   /* color: white; */

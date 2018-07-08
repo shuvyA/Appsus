@@ -23,7 +23,7 @@ function removeNote(noteId) {
     let noteIdx = notes.findIndex((note) => note.id === noteId)
     notes.splice(noteIdx, 1);
     saveNotes()
-  
+
 }
 
 
@@ -107,7 +107,7 @@ function saveNewImg(imgBase64, noteId) {
     getNoteById(noteId)
         .then((note) => {
             note.src = imgBase64;
-            
+
             saveNotes();
         })
 }
@@ -118,16 +118,86 @@ function saveNewImg(imgBase64, noteId) {
 
 
 
-function saveTxt(text, title,noteId) {
+function saveTxt(text, title, noteId) {
     getNoteById(noteId)
-    .then((note) => {
-        note.text = text;
-        note.title = title;
-        saveNotes();
-        // console.log(text,'servic');
-        
-    })
+        .then((note) => {
+            note.text = text;
+            note.title = title;
+            saveNotes();
+            // console.log(text,'servic');
 
+        })
+
+}
+
+
+
+// ********************8add note************************************88
+
+
+function addNoteTxt(title) {
+    if (title === '') return;
+    let newObjTxt = emptyNoteText();
+    newObjTxt.title = title;
+    notes.unshift(newObjTxt)
+    saveNotes();
+}
+function addNoteTodo(title) {
+    if (title === '') return;
+    let newObjTxt = emptyNoteTodo();
+    newObjTxt.title = title;
+    notes.unshift(newObjTxt)
+    saveNotes();
+}
+function addNoteImg(title) {
+    let newObjTxt = emptyNoteImg();
+    newObjTxt.title = title;
+    notes.unshift(newObjTxt)
+    saveNotes();
+}
+
+
+
+
+
+
+// empty note
+
+function emptyNoteImg() {
+    return {
+        readAt: '',
+        text: 'image one',
+        title: 'one img',
+        src: '/img/100.jpg',
+        id: utilsService.makeId(),
+        type: 'note-img-preview',
+    };
+}
+
+
+function emptyNoteText() {
+    return {
+        readAt: '',
+        text: 'new text - edit!!',
+        title: 'twowme dsfko sdfdk ',
+        id: utilsService.makeId(),
+        type: 'note-txt-preview',
+    };
+}
+
+function emptyNoteTodo() {
+
+    return {
+        readAt: '',
+        title: 'todos',
+        todos: [
+            { name: 'one', isDone: false, id: utilsService.makeId() },
+            { name: 'two', isDone: false, id: utilsService.makeId() },
+            { name: 'three', isDone: false, id: utilsService.makeId() }],
+
+        id: utilsService.makeId(),
+        type: 'note-todo-preview',
+    };
 }
 
 function createNotes() {
@@ -242,5 +312,8 @@ export default {
     deleteTodo,
     saveNewImg,
     saveTxt,
+    addNoteTxt,
+    addNoteTodo,
+    addNoteImg,
     // createTodo,
 }

@@ -19,7 +19,8 @@ export default {
     
     <button v-if="!addNew" @click.prevent="addNote">✚</button>
     <button v-if="addNew" @click.prevent="addNew=false">✖</button>
-    <note-add-new  v-if="addNew">  </note-add-new>
+    <note-add-new  v-if="addNew" @add-note-txt="addNoteTxt"
+    @add-note-todo="addNoteTodo"  @add-note-img="addNoteImg" >  </note-add-new>
 
        <div class="masonry" v-if="notes">
 
@@ -60,6 +61,22 @@ export default {
             console.log('add note');
             this.addNew=true;
 
+        },
+
+        addNoteTxt(title){
+            console.log(title,'txt new list');
+            noteService.addNoteTxt(title);
+            
+        },
+        addNoteImg(title){
+            console.log(title,'txt new list');
+            noteService.addNoteImg(title);
+            
+        },
+        addNoteTodo(title){
+            console.log(title,'txt new list');
+            noteService.addNoteTodo(title);
+            
         }
 
 

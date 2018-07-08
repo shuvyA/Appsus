@@ -3,36 +3,27 @@ export default {
     template: `
 
     <section class="note-add-new">
-       <h2>  add new </h2> 
-        <!-- <label>Choose note:
-    <select @change="addNewText" id="ice-cream" name="ice-cream">
-        <option value="abcf" >text</option>
-        <option value="chocolate">Todo</option>
-        <option value="strawberry">image</option>
+        <div class="title-new-note">
+            new note
+        </div>
+        <div class="main-new-note">
+            
+    <select v-model="selected">
+    <option disabled value="">Please select one</option>
+    <option>text</option>
+    <option>Todo</option>
+    <option>image</option>
     </select>
-</label> -->
+    <span>Selected: {{ selected }}</span>
+    <div>
 
+    
+    <input placeholder="new title" v-model="newTitle" />
+        <button @click.prevent="addNote">✚</button>
 
+    </div>
 
-<select v-model="selected">
-  <option disabled value="">Please select one</option>
-  <option>text</option>
-  <option>Todo</option>
-  <option>image</option>
-</select>
-<span>Selected: {{ selected }}</span>
-<div>
-
-Title
-<input v-model="newTitle" />
-    <button @click.prevent="addNote">✚</button>
-
-</div>
-
-
-
-
-
+        </div>
 
     </section>
 
@@ -58,15 +49,22 @@ Title
 
         addNewText() {
             console.log('text to toto');
-
+            // if (this.newTitle === '') return;
+            this.$emit('add-note-txt', this.newTitle);
+            this.newTitle = '';
+            
         },
         addNewTodo() {
             console.log('todo');
-
+            // if (this.newTitle = '') return;
+            this.$emit('add-note-todo', this.newTitle)
+            this.newTitle = '';
         },
         addNewImage() {
+            // if (this.newTitle = '') return;
             console.log('image');
-
+            this.$emit('add-note-img', this.newTitle)
+            this.newTitle = '';
         },
 
         addNote() {
@@ -79,44 +77,6 @@ Title
 
         },
 
-        emptyNoteImg() {
-            return {
-                readAt: '',
-                text: 'image one',
-                title: 'one img',
-                src: '/img/100.jpg',
-                id: utilsService.makeId(),
-                type: 'note-img-preview',
-            };
-
-
-        },
-
-        emptyNoteText() {
-            return {
-                readAt: '',
-                text: 'image one',
-                title: 'one img',
-                src: '/img/104.jpg',
-                id: utilsService.makeId(),
-                type: 'note-img-preview',
-            };
-
-        },
-        emptyNoteTodo() {
-
-            return {
-                readAt: '',
-                title: 'todos',
-                todos: [
-                    { name: 'one', isDone: false, id: utilsService.makeId() },
-                    { name: 'two', isDone: false, id: utilsService.makeId() },
-                    { name: 'three', isDone: false, id: utilsService.makeId() }],
-
-                id: utilsService.makeId(),
-                type: 'note-todo-preview',
-            };
-        }
     },
 
     components: {

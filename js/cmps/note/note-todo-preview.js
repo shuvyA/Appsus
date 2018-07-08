@@ -11,13 +11,13 @@ export default {
     <div class="title-todo flex space-between"> {{note.title}} 
             <div >
 
-                <button>✎</button>
+                <button @click.prevent="statusEdit=!statusEdit">✎</button>
                 <button @click.prevent="deleteNote">✘</button>
             </div>
 </div>
 <ul class="clean-list main-todo">
-    <input v-model="newTodo" />
-    <button @click.prevent="addTodo(note.id)">✚</button>
+    <input v-if="statusEdit" v-model="newTodo" />
+    <button v-if="statusEdit" @click.prevent="addTodo(note.id)">✚</button>
         <li v-for="todo in todos">
             <div class="flex space-between"> 
                <div v-bind:class="{done : todo.isDone}" 
@@ -27,7 +27,7 @@ export default {
            
               <div >
                 <!-- <button>✎</button> -->
-                <button @click.stop="deleteTodo(todo.id, note.id)">✘</button>
+                <button v-if="statusEdit" @click.stop="deleteTodo(todo.id, note.id)">✘</button>
               </div>
 
             </div>    
@@ -44,6 +44,7 @@ export default {
         return {
             newTodo: '',
             todos: this.note.todos,
+            statusEdit: false,
 
         }
     },
