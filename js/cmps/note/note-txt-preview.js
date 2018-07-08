@@ -10,7 +10,7 @@ export default {
         <div class="title-text flex space-between"><div ref="myTitle"  :class="{'edit-txt': statusEdit}"> {{note.title}}</div>  
             <div>
 
-                <button @click.prevent="editTxt">✎</button>
+                <button  @click.prevent="editTxt">✎</button>
                 <button @click.prevent="deleteNote">✘</button>
             </div>
         </div>
@@ -46,11 +46,11 @@ export default {
 
         },
         editTxt() {
-
+            
             this.beforeTitle = this.note.title;
             this.beforeText = this.note.text;
             this.statusEdit = true;
-
+            
             var txt = this.$refs.myTxt;
             var title = this.$refs.myTitle;
             txt.contentEditable = "true"
