@@ -59,24 +59,27 @@ export default {
         },
         addNote() {
             console.log('add note');
-            this.addNew=true;
+            this.addNew = true;
 
         },
 
-        addNoteTxt(title){
-            console.log(title,'txt new list');
+        addNoteTxt(title) {
+            console.log(title, 'txt new list');
             noteService.addNoteTxt(title);
-            
+
         },
-        addNoteImg(title){
-            console.log(title,'txt new list');
+        addNoteImg(title) {
+            console.log(title, 'txt new list');
             noteService.addNoteImg(title);
-            
+            this.addNew = false;
+
         },
-        addNoteTodo(title){
-            console.log(title,'txt new list');
+        addNoteTodo(title) {
+            console.log(title, 'txt new list');
             noteService.addNoteTodo(title);
+            this.addNew = false;
             
+
         }
 
 
