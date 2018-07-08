@@ -15,8 +15,8 @@ export default {
 		closeMail() {
 			this.$emit('close-mail');
 		},
-		onDeleteEmail(){
-			this.$emit('delete-email',this.email.id)
+		onDeleteEmail() {
+			this.$emit('delete-email', this.email.id);
 		}
 	}
 };

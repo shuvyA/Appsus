@@ -3,6 +3,9 @@ import emailList from '../cmps/email-cmps/email-list-cmp.js';
 import progressBar from '../cmps/email-cmps/progress-bar-cmp.js';
 import emailFilter from '../cmps/email-cmps/email-filter-cmp.js';
 import emailCompose from '../cmps/email-cmps/email-compose-cmp.js';
+import utils from '../service/utils.js';
+
+const KEY = 'EMAILS';
 
 export default {
 	template: `
@@ -17,7 +20,7 @@ export default {
         <progress-bar :emailCount="countEmails">
 		</progress-bar>
 		
-        <email-list :emails="emailsToShow" @email-read="setReadEmail">
+        <email-list :emails="emailsToShow" @email-read="setReadEmail" @delete-email="deleteEmail">
 		</email-list>
 		
 		<button class="compose-email" @click="newEmail = !newEmail">
@@ -41,6 +44,7 @@ export default {
 		},
 		setReadEmail(id) {
 			emailService.setRead(id);
+			//bug
 		},
 		saveEmail(email) {
 			emailService.addEmail(email);
@@ -48,9 +52,16 @@ export default {
 		},
 		closeCompose() {
 			this.newEmail = false;
+		},
+		deleteEmail(id) {
+			console.log('mail app got id:', id);
+			emailService.deleteEmailByIdx(id);
 		}
 	},
 	created() {
+		if (utils.loadFromStorage(KEY) && utils.loadFromStorage(KEY).length > 0) {
+			return (this.emails = utils.loadFromStorage(KEY));
+		}
 		emailService.getEmails().then(emails => {
 			this.emails = emails;
 		});
@@ -87,6 +98,7 @@ export default {
 		emailList,
 		progressBar,
 		emailFilter,
-		emailCompose
+		emailCompose,
+		utils
 	}
 };
