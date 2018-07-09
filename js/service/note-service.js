@@ -227,7 +227,7 @@ function createNotes() {
     },
     {
         readAt: '',
-        text: 'two woedsf df dsf df ds fds f dsdf',
+        text: 'two woedsf df ',
         title: 'twowme dsfko sdfdk ',
         id: utilsService.makeId(),
         type: 'note-txt-preview',
@@ -235,7 +235,7 @@ function createNotes() {
     {
         readAt: '',
         text: 'dasdasdas',
-        title: 'sdasdasdasdadasd',
+        title: 'sdasadasd',
         id: utilsService.makeId(),
         type: 'note-txt-preview',
     },
@@ -258,7 +258,7 @@ function createNotes() {
     {
         readAt: '',
         text: 'two woedsf df dsf df ds fds f dsdf',
-        title: 'twowme dsfko sdfdk ',
+        title: 'twowme ',
         id: utilsService.makeId(),
         type: 'note-txt-preview',
     },
