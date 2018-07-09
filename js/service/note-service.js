@@ -150,6 +150,7 @@ function addNoteTodo(title) {
     saveNotes();
 }
 function addNoteImg(title) {
+    if (title === '') return;
     let newObjTxt = emptyNoteImg();
     newObjTxt.title = title;
     notes.unshift(newObjTxt)
